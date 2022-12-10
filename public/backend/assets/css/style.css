@@ -1,0 +1,6 @@
+#modal-default .modal-body img {
+    width: 100%;
+}
+#modal-default .modal-dialog {
+    max-width: 700px;
+}
