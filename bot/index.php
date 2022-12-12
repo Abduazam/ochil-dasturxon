@@ -8,11 +8,11 @@
     const LOCATION_TYPE = 1;
     const ORGANIZATION_TYPE = 2;
 
-    const PAYMENT_CARD = "8600140469926506";
+    const PAYMENT_CARD = "your_payment_card";
 
-    const SUPERADMIN = 1982979736;
-    const BOT_API = "5845376453:AAFfP0lrYkwSktGHgm13SkPHrmN5acKOSkI";
-    const IMAGE_LINK = "https://bots.abduazam.uz/ochil_dasturxon/images/";
+    const SUPERADMIN = your_chat_id;
+    const BOT_API = "your_bot_api";
+    const IMAGE_LINK = "your_img_file_path";
 
     function bot($method, $data = []) {
         $url = "https://api.telegram.org/bot".BOT_API.'/'.$method;
