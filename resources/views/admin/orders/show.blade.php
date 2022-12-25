@@ -1,58 +1,75 @@
 @extends('layouts.back')
 
-@section('title', __('dashboard.show_section', ['section' => __('categories.order'), 'title' => $order->id]))
+@foreach($meal as $m)
+    @section('title', __('dashboard.show_section', ['section' => __('categories.order'), 'title' => $m->title]))
+@endforeach
 
 @section('content')
     <div class="col-12 bg-white p-0">
-        <div class="block">
-            <div class="block-header block-header-default">
-                <h3 class="block-title">{{ __('dashboard.client', ['section' => __('categories.order')]) }}: {{ $order->user->first_name }}</h3>
+        <!-- Hero -->
+        @foreach($meal as $ml)
+        <div class="bg-image" style="background-image: url('/images/{{ $ml->img }}');">
+            <div class="bg-black-op">
+                <div class="content content-top content-full text-center">
+                    <div class="py-20">
+                        <h1 class="h2 font-w700 text-white mb-10">{{ $ml->title }}</h1>
+                    </div>
+                </div>
             </div>
-            <div class="block-content">
-                <table class="table table-bordered table-vcenter">
-                    <tr>
-                        <th class="text-uppercase col-3">{{ __('dashboard.meal', ['section' => __('categories.order')]) }}</th>
-                        <td>{{ $order->meal->title }}</td>
-                    </tr>
-                    <tr>
-                        <th class="text-uppercase col-3">{{ __('dashboard.count', ['section' => __('categories.order')]) }}</th>
-                        <td>{{ $order->count }}</td>
-                    </tr>
-                    <tr>
-                        <th class="text-uppercase col-3">{{ __('dashboard.meal_price', ['section' => __('categories.order')]) }}</th>
-                        <td>{{ $order->meal->price * $order->count }} {{ __('dashboard.currency') }}</td>
-                    </tr>
-                    @if($order->user->organ_id)
-                    <tr>
-                        <th class="text-uppercase">{{ __('dashboard.organ_id', ['section' => __('categories.users')]) }}</th>
-                        <td>{{ $order->user->organization->title }}</td>
-                    </tr>
-                    @endif
-                    <tr>
-                        <th class="text-uppercase">{{ __('dashboard.phone_number', ['section' => __('categories.users')]) }}</th>
-                        <td>{{ $order->user->phone_number }}</td>
-                    </tr>
-                    @if(!$order->user->organ_id)
-                    <tr>
-                        <th class="text-uppercase">{{ __('dashboard.location', ['section' => __('categories.users')]) }}</th>
-                        <td>
-                            <div id="map" style="width: 100%; height: 300px;">
-                            </div>
-                        </td>
-                    </tr>
-                    @endif
-                    <tr>
-                        <th class="text-uppercase">{{ __('dashboard.status') }}</th>
-                        <td>
-                            @if($order->status === 1)
-                                <span class="badge badge-success">{{ __('dashboard.active') }}</span>
-                            @else
-                                <span class="badge badge-danger">{{ __('dashboard.inactive') }}</span>
-                            @endif
-                        </td>
-                    </tr>
-                </table>
+        </div>
+        @endforeach
+
+        <!-- Page Content -->
+        <div class="content">
+            <!-- Products -->
+            <h2 class="content-heading pt-0">{{ __('categories.orders') }} ({{ count($orders) }})</h2>
+            <div class="block block-rounded">
+                <div class="block-content p-0">
+                    <div class="table-responsive">
+                        <table class="table table-striped mb-0">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" style="width: 50px;">#</th>
+                                    <th style="width: 170px;">{{ __('dashboard.client', ['section' => __('categories.order')]) }}</th>
+                                    <th>{{ __('dashboard.count', ['section' => __('categories.order')]) }}</th>
+                                    <th>{{ __('dashboard.organ_id', ['section' => __('categories.users')]) }}</th>
+                                    <th>{{ __('dashboard.phone_number', ['section' => __('categories.users')]) }}</th>
+                                    <th class="d-none d-sm-table-cell" style="width: 15%;">{{ __('dashboard.status') }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($orders as $order)
+                                <tr>
+                                    <th class="text-center" scope="row">{{ $loop->index+1 }}</th>
+                                    <td>{{ $order->user->first_name }}</td>
+                                    <td>{{ $order->count }}</td>
+                                    <td>{{ $order->user->organization->title }}</td>
+                                    <td>{{ $order->user->phone_number }}</td>
+                                    <td class="d-none d-sm-table-cell">
+                                        @if($order->status == 0)
+                                            <span class="badge badge-danger">{{ __('dashboard.inactive') }}</span>
+                                        @else
+                                            <span class="badge badge-success">{{ __('dashboard.active') }}</span>
+                                        @endif
+                                    </td>
+                                    <td class="text-center">
+                                        <div class="btn-group">
+                                            <!-- <a href="{{ route('orders.show', ['order' => $order->id]) }}" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Show">
+                                                <i class="fa fa-eye"></i>
+                                            </a> -->
+                                            <a href="" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Show">
+                                                <i class="fa fa-check"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
+            <!-- END Products -->
         </div>
     </div>
 @endsection

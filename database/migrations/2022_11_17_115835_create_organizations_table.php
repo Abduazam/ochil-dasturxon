@@ -12,7 +12,6 @@ return new class extends Migration
             $table->increments('id');
             $table->string('title', 50);
             $table->integer('status')->default(1);
-            $table->timestamps();
         });
     }
 

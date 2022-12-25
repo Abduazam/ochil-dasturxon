@@ -8,13 +8,11 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('user', static function (Blueprint $table) {
+        Schema::create('bot_users', static function (Blueprint $table) {
             $table->increments('id');
             $table->bigInteger('chat_id')->nullable();
             $table->string('first_name', 50);
-            $table->string('username', 50)->nullable();
             $table->string('phone_number', 15)->unique()->nullable();
-            $table->double('balance')->default(0);
             $table->integer('status')->default(1);
         });
 
@@ -23,7 +21,7 @@ return new class extends Migration
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')
                 ->references('id')
-                ->on('user')
+                ->on('bot_users')
                 ->onDelete('cascade');
             $table->unsignedInteger('organ_id');
             $table->foreign('organ_id')
@@ -38,11 +36,40 @@ return new class extends Migration
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')
                 ->references('id')
-                ->on('user')
+                ->on('bot_users')
                 ->onDelete('cascade');
             $table->string('latitude', 30);
             $table->string('longitude', 30);
             $table->integer('status')->default(1);
+        });
+
+        Schema::create('balance_organ', static function (Blueprint $table) {
+            $table->id();
+            $table->unsignedInteger('organ_id');
+            $table->foreign('organ_id')
+                ->references('id')
+                ->on('organizations')
+                ->onDelete('cascade');
+            $table->double('balance');
+            $table->integer('status')->default(1);
+        });
+
+        Schema::create('balance_user', static function (Blueprint $table) {
+            $table->id();
+            $table->unsignedInteger('user_id');
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('bot_users')
+                ->onDelete('cascade');
+            $table->double('balance');
+            $table->integer('status')->default(1);
+        });
+
+        Schema::create('action', static function (Blueprint $table) {
+            $table->id();
+            $table->bigInteger('chat_id');
+            $table->integer('step_1');
+            $table->integer('step_2');
         });
     }
 
@@ -50,6 +77,9 @@ return new class extends Migration
     {
         Schema::dropIfExists('user_location');
         Schema::dropIfExists('user_organization');
-        Schema::dropIfExists('user');
+        Schema::dropIfExists('balance_organ');
+        Schema::dropIfExists('balance_user');
+        Schema::dropIfExists('action');
+        Schema::dropIfExists('bot_users');
     }
 };

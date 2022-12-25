@@ -12,6 +12,7 @@ return [
 
     // USER
     'users' => "Mijozlar",
+    'user' => "Mijoz",
 
     // ORDERS
     'orders' => "Buyurtmalar",

@@ -21,7 +21,6 @@ return new class extends Migration
                 ->on('meals')
                 ->onDelete('cascade');
             $table->integer('status')->default(1);
-            $table->timestamps();
         });
     }
 

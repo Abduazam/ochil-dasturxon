@@ -16,6 +16,8 @@ class Day extends Model
 
     protected $fillable = ['day', 'status'];
 
+    public $timestamps = false;
+
     public function meals(): HasManyThrough
     {
         return $this->hasManyThrough(

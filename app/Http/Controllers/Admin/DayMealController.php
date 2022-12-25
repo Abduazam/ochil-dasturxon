@@ -17,8 +17,7 @@ class DayMealController extends Controller
 {
     public function index(): View|Application
     {
-        $today = date('Y-m-d');
-        $days = Day::where([['status', 1], ['day', '>=', $today]])->get();
+        $days = Day::where([['status', 1]])->get();
         return view('admin.day.index', compact('days'));
     }
 
@@ -33,8 +32,17 @@ class DayMealController extends Controller
         try {
             $params = $request->validated();
 
+            $haveDay = Day::where('status', 1)->get();
+            foreach ($haveDay as $yesterday) {
+                $yesterday->status = 0;
+                $yesterday->save();
+            }
+
             $day = new Day();
+            $for_day = date('Y-m-d', strtotime($params['day'] . '+1 day'));
             $day->day = $params['day'];
+            $day->start_date = $params['day']." 20:00:00";
+            $day->end_date = $for_day." 14:00:00";
             $day->save();
 
             foreach ($params['meals'] as $meal_id)
@@ -84,8 +92,8 @@ class DayMealController extends Controller
 
     public function report(): View|Application
     {
-        $days = Day::where('status', 1)->get();
-        return view('admin.day.index', compact('days'));
+        $days = Day::where('status', 0)->get();
+        return view('admin.day.report', compact('days'));
     }
 
     public function inactivate($day, $meal): RedirectResponse

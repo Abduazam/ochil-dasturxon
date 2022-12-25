@@ -11,15 +11,15 @@
                     <a href="{{ route('day.create') }}" class="btn btn-success">{{ __('dashboard.add') }}</a>
                 </div>
             </div>
-            <div class="block-content">
+            <div class="block-content row">
                 @if(count($days) > 0)
                     @foreach($days as $day)
                         <div class="col-md-3">
                             <table class="table table-bordered">
                                 <thead>
-                                    <tr class="bg-gray-light">
-                                        <th>{{ $day->day }}</th>
-                                    </tr>
+                                <tr class="bg-gray-light">
+                                    <th>{{ $day->day }}</th>
+                                </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($day->meals as $meal)

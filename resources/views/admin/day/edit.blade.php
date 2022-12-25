@@ -19,7 +19,7 @@
                             <div class="form-group">
                                 <input type="text" class="js-flatpickr daily-date form-control bg-white"
                                        id="date" name="day" data-min-date="today"
-                                       placeholder="Yil-oy-kun" value="{{ $day->day }}">
+                                       placeholder="Yil-oy-kun" value="{{ $day->day }}" readonly disabled>
                             </div>
                         </div>
                         <div class="col-6">

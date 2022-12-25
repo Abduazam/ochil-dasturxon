@@ -20,6 +20,8 @@ class DailyMenu extends Model
 
     protected $fillable = ['day_id', 'meal_id', 'status'];
 
+    public $timestamps = false;
+
     public function meals(): BelongsTo
     {
         return $this->belongsTo(Meal::class, 'meal_id');

@@ -20,7 +20,6 @@
                             <th style="width: 150px;">{{ __('dashboard.name', ['section' => __('categories.users')]) }}</th>
                             <th style="width: 200px;">{{ __('dashboard.phone_number', ['section' => __('categories.users')]) }}</th>
                             <th style="width: 200px;">{{ __('dashboard.organ_id', ['section' => __('categories.users')]) }}</th>
-                            <th style="width: 200px;">{{ __('dashboard.balance', ['section' => __('categories.users')]) }}</th>
                             <th class="d-none d-sm-table-cell" style="width: 15%;">{{ __('dashboard.status') }}</th>
                             <th class="text-center" style="width: 100px;">Actions</th>
                         </tr>
@@ -36,12 +35,6 @@
                                         {{ $user->organization->title }}
                                     @endif
                                 </td>
-                                <td>
-                                    {{ $user->balance }} {{ __('dashboard.currency') }}
-                                    @if($user->balance < 0)
-                                        <span class="badge badge-danger ml-2">{{ __('dashboard.debt') }}</span>
-                                    @endif
-                                </td>
                                 <td class="d-none d-sm-table-cell">
                                     @if($user->status === 1)
                                         <span class="badge badge-success">{{ __('dashboard.active') }}</span>
@@ -51,9 +44,11 @@
                                 </td>
                                 <td class="text-center">
                                     <div class="btn-group">
+                                        @if(!isset($user->organization))
                                         <a href="{{ route('users.edit', ['user' => $user->id]) }}" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Edit">
                                             <i class="fa fa-pencil"></i>
                                         </a>
+                                        @endif
                                         <a href="{{ route('users.show', ['user' => $user->id]) }}" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Show">
                                             <i class="fa fa-eye"></i>
                                         </a>

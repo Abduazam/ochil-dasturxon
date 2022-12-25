@@ -11,8 +11,9 @@ return new class extends Migration
         Schema::create('days', static function (Blueprint $table) {
             $table->increments('id');
             $table->date('day');
+            $table->timestamp('start_date');
+            $table->timestamp('end_date');
             $table->integer('status')->default(1);
-            $table->timestamps();
         });
     }
 

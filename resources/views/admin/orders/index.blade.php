@@ -6,49 +6,27 @@
     <div class="col-12 bg-white p-0">
         <div class="block">
             <div class="block-header block-header-default">
-                <h3 class="block-title">{{ __('categories.orders') }}</h3>
+                <h3 class="block-title">{{ __('categories.orders') }}: {{ date("d.m.Y") }}</h3>
                 <div class="block-options">
                     <a href="{{ route('orders.create') }}" class="btn btn-success">{{ __('dashboard.add') }}</a>
                 </div>
             </div>
-            <div class="block-content">
+            <div class="block-content row">
                 @if(count($orders) > 0)
-                    <table class="table table-bordered table-vcenter">
-                        <thead>
-                        <tr>
-                            <th class="text-center" style="width: 50px;">#</th>
-                            <th style="width: 200px;">{{ __('dashboard.client', ['section' => __('categories.order')]) }}</th>
-                            <th style="width: 200px;">{{ __('dashboard.meal', ['section' => __('categories.order')]) }}</th>
-                            <th>{{ __('dashboard.count', ['section' => __('categories.order')]) }}</th>
-                            <th class="d-none d-sm-table-cell" style="width: 15%;">{{ __('dashboard.status') }}</th>
-                            <th class="text-center" style="width: 100px;">Actions</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($orders as $order)
-                            <tr>
-                                <th class="text-center" scope="row">{{ $order->id }}</th>
-                                <td>{{ $order->user->first_name }}</td>
-                                <td>{{ $order->meal->title }}</td>
-                                <td>{{ $order->count }}</td>
-                                <td class="d-none d-sm-table-cell">
-                                    @if($order->status === 1)
-                                        <span class="badge badge-success">{{ __('dashboard.active') }}</span>
-                                    @else
-                                        <span class="badge badge-danger">{{ __('dashboard.inactive') }}</span>
-                                    @endif
-                                </td>
-                                <td class="text-center">
-                                    <div class="btn-group">
-                                        <a href="{{ route('orders.show', ['order' => $order->id]) }}" type="button" class="btn btn-sm btn-secondary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="Show">
-                                            <i class="fa fa-eye"></i>
-                                        </a>
+                    @foreach($orders as $order)
+                        <div class="col-md-6 col-xl-3">
+                            <a class="block block-rounded block-link-pop text-center" href="{{ route('orders.show', ['order' => $order->meal_id]) }}">
+                                <div class="block-content block-content-full bg-image" style="background-image: url('/images/{{ $order->meal->img }}');">
+                                    <div class="circle-order-count">
+                                        <h5 class="mb-0">{{ $order->total }}</h5>
                                     </div>
-                                </td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
+                                </div>
+                                <div class="block-content block-content-full">
+                                    <div class="font-w600">{{ $order->meal->title }}</div>
+                                </div>
+                            </a>
+                        </div>
+                    @endforeach
                 @else
                     <p class="text-center mb-3">{{ __('dashboard.empty', ['section' => __('categories.orders')]) }}</p>
                 @endif

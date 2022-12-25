@@ -90,21 +90,10 @@
                                         <a href="{{ route('orders.index') }}" class="{{ request()->is('orders') ? 'text-white' : '' }}"><span class="sidebar-mini-hide">{{ __('dashboard.list', ['section' => __('categories.orders')]) }}</span></a>
                                     </li>
                                     <li>
+                                        <a href="{{ url('orders/report') }}" class="{{ request()->is('orders/report') ? 'text-white' : '' }}"><span class="sidebar-mini-hide">{{ __('dashboard.report', ['section' => __('categories.orders')]) }}</span></a>
+                                    </li>
+                                    <li>
                                         <a href="{{ route('orders.create') }}" class="{{ request()->is('orders/create') ? 'text-white' : '' }}"><span class="sidebar-mini-hide">{{ __('dashboard.add_section', ['section' => __('categories.orders')]) }}</span></a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="{{ route('payment.index') }}" class="{{ request()->is('payment*') ? 'active' : '' }}"><i class="si si-wallet"></i><span class="sidebar-mini-hide">{{ __('categories.payment') }}</span></a>
-                            </li>
-                            <li class="{{ request()->is('meal*') ? 'open' : '' }}">
-                                <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-cup"></i><span class="sidebar-mini-hide">{{ __('categories.meal') }}</span></a>
-                                <ul>
-                                    <li>
-                                        <a href="{{ route('meal.index') }}" class="{{ request()->is('meal') ? 'text-white' : '' }}"><span class="sidebar-mini-hide">{{ __('dashboard.list', ['section' => __('categories.meal')]) }}</span></a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('meal.create') }}" class="{{ request()->is('meal/create') ? 'text-white' : '' }}"><span class="sidebar-mini-hide">{{ __('dashboard.add_section', ['section' => __('categories.meal')]) }}</span></a>
                                     </li>
                                 </ul>
                             </li>
@@ -122,14 +111,14 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li class="{{ request()->is('organization*') ? 'open' : '' }}">
-                                <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="fa fa-bank"></i><span class="sidebar-mini-hide">{{ __('categories.organs') }}</span></a>
+                            <li class="{{ request()->is('meal*') ? 'open' : '' }}">
+                                <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-cup"></i><span class="sidebar-mini-hide">{{ __('categories.meal') }}</span></a>
                                 <ul>
                                     <li>
-                                        <a href="{{ route('organization.index') }}" class="{{ request()->is('organization') ? 'text-white' : '' }}"><span class="sidebar-mini-hide">{{ __('dashboard.list', ['section' => __('categories.organs')]) }}</span></a>
+                                        <a href="{{ route('meal.index') }}" class="{{ request()->is('meal') ? 'text-white' : '' }}"><span class="sidebar-mini-hide">{{ __('dashboard.list', ['section' => __('categories.meal')]) }}</span></a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('organization.create') }}" class="{{ request()->is('organization/create') ? 'text-white' : '' }}"><span class="sidebar-mini-hide">{{ __('dashboard.add_section', ['section' => __('categories.organs')]) }}</span></a>
+                                        <a href="{{ route('meal.create') }}" class="{{ request()->is('meal/create') ? 'text-white' : '' }}"><span class="sidebar-mini-hide">{{ __('dashboard.add_section', ['section' => __('categories.meal')]) }}</span></a>
                                     </li>
                                 </ul>
                             </li>
@@ -143,6 +132,20 @@
                                         <a href="{{ route('users.create') }}" class="{{ request()->is('users/create') ? 'text-white' : '' }}"><span class="sidebar-mini-hide">{{ __('dashboard.add_section', ['section' => __('categories.users')]) }}</span></a>
                                     </li>
                                 </ul>
+                            </li>
+                            <li class="{{ request()->is('organization*') ? 'open' : '' }}">
+                                <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="fa fa-bank"></i><span class="sidebar-mini-hide">{{ __('categories.organs') }}</span></a>
+                                <ul>
+                                    <li>
+                                        <a href="{{ route('organization.index') }}" class="{{ request()->is('organization') ? 'text-white' : '' }}"><span class="sidebar-mini-hide">{{ __('dashboard.list', ['section' => __('categories.organs')]) }}</span></a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('organization.create') }}" class="{{ request()->is('organization/create') ? 'text-white' : '' }}"><span class="sidebar-mini-hide">{{ __('dashboard.add_section', ['section' => __('categories.organs')]) }}</span></a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="{{ route('payment.index') }}" class="{{ request()->is('payment*') ? 'active' : '' }}"><i class="si si-wallet"></i><span class="sidebar-mini-hide">{{ __('categories.payment') }}</span></a>
                             </li>
                         </ul>
                     </div>

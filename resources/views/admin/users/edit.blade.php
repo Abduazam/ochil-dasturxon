@@ -45,7 +45,7 @@
                             @enderror
                         </div>
                         <div class="col-md-8">
-                            <label for="location">{{ __('dashboard.location', ['section' => __('categories.users')]) }}</label>
+                            <!-- <label for="location">{{ __('dashboard.location', ['section' => __('categories.users')]) }}</label> -->
                         </div>
                         <div class="col-md-4">
                             <div class="form-group text-right">

@@ -7,7 +7,9 @@
         <div class="block">
             <div class="block-header block-header-default">
                 <h3 class="block-title">{{ __('categories.users') }}: {{ $user->id }}</h3>
+                @if(!isset($user->organization))
                 <a href="{{ route('users.edit', ['user' => $user->id]) }}" type="button" class="btn btn-warning mr-2">{{ __('dashboard.edit') }}</a>
+                @endif
                 <form action="{{ route('users.destroy', ['user' => $user->id]) }}" method="POST">
                     @csrf
                     @method('DELETE')
@@ -17,7 +19,7 @@
             <div class="block-content">
                 <table class="table table-bordered table-vcenter">
                     <tr>
-                        <th class="text-uppercase col-2">{{ __('dashboard.name', ['section' => __('categories.users')]) }}</th>
+                        <th class="text-uppercase col-3">{{ __('dashboard.name', ['section' => __('categories.users')]) }}</th>
                         <td>{{ $user->first_name }}</td>
                     </tr>
                     <tr>
@@ -25,8 +27,12 @@
                         <td>{{ $user->phone_number }}</td>
                     </tr>
                     <tr>
-                        <th class="text-uppercase">{{ __('dashboard.balance', ['section' => __('categories.users')]) }}</th>
-                        <td>{{ $user->balance }}</td>
+                        @if(isset($user->organization))
+                        <th class="text-uppercase">{{ __('dashboard.organ_id', ['section' => __('categories.users')]) }}</th>
+                        <td>{{ $user->organization->title }}</td>
+                        @else
+                        <span class="badge badge-dark">Tashkilot mavjud emas</span>
+                        @endif
                     </tr>
                     <tr>
                         <th class="text-uppercase">{{ __('dashboard.status') }}</th>

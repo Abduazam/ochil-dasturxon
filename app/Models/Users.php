@@ -14,7 +14,7 @@ class Users extends Model
     public const ACTIVE = 1;
     public const INACTIVE = 0;
 
-    protected $table = "user";
+    protected $table = "bot_users";
 
     protected $primaryKey = "id";
 

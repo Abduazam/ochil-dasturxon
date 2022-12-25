@@ -18,6 +18,8 @@ class Organization extends Model
 
     protected $fillable = ['title', 'status'];
 
+    public $timestamps = false;
+
     public function toActive(): void
     {
         $this->status = $this->status === 1 ? self::INACTIVE : self::ACTIVE;

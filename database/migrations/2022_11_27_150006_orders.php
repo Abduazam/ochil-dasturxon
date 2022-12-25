@@ -21,7 +21,7 @@ return new class extends Migration
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')
                 ->references('id')
-                ->on('user')
+                ->on('bot_users')
                 ->onDelete('cascade');
             $table->unsignedInteger('meal_id');
             $table->foreign('meal_id')
@@ -29,7 +29,6 @@ return new class extends Migration
                 ->on('meals')
                 ->onDelete('cascade');
             $table->integer('count');
-            $table->date('date');
             $table->timestamp('created_date');
             $table->integer('status')->default(0);
         });
@@ -55,7 +54,7 @@ return new class extends Migration
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')
                 ->references('id')
-                ->on('user')
+                ->on('bot_users')
                 ->onDelete('cascade');
             $table->integer('status')->default(0);
         });
@@ -77,7 +76,7 @@ return new class extends Migration
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')
                 ->references('id')
-                ->on('user')
+                ->on('bot_users')
                 ->onDelete('cascade');
             $table->integer('status')->default(0);
         });
@@ -87,7 +86,7 @@ return new class extends Migration
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')
                 ->references('id')
-                ->on('user')
+                ->on('bot_users')
                 ->onDelete('cascade');
             $table->date('date');
             $table->string('image', 255);

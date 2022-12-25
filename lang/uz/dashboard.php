@@ -18,6 +18,7 @@ return [
     'save' => "Saqlash",
     'activate' => "Faollashtirish",
     'close' => "Yopish",
+    'search' => "Qidirish",
 
     // STATUS
     'status' => 'Holati',
@@ -63,6 +64,9 @@ return [
     'count' => ":section soni",
     'enter_count' => "Sonini kiriting",
     'minus_sum' => ":section summasi",
+    'first_date' => "Birinchi sana tanlang",
+    'second_date' => "Ikkinchi sana tanlang",
+    'order_count' => "Buyurtmalar soni",
 
     // IMAGE
 ];

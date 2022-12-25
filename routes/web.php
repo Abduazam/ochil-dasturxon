@@ -33,7 +33,9 @@ Route::middleware(['role:admin'])->prefix('/')->group(static function () {
     Route::resource('day', DayMealController::class)->except(['show', 'destroy']);
     Route::resource('organization', OrganizationController::class)->except(['show']);
     Route::resource('users', UsersController::class);
-    Route::resource('orders', OrdersController::class);
+    Route::get('/orders/report', [OrdersController::class, 'report']);
+    Route::post('/orders/search', [OrdersController::class, 'search']);
+    Route::resource('orders', OrdersController::class)->except(['update', 'edit', 'destroy']);
     Route::get('/payment/accept/{id}/{sum}', [PaymentController::class, 'accept']);
     Route::resource('payment', PaymentController::class)->except(['create', 'store', 'update']);
 });
